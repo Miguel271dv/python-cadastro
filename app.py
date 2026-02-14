@@ -21,17 +21,6 @@ tipo_cliente = st.selectbox(
 )
 cadastrar = st.button("Cadastrar cliente")
 if cadastrar:
-     
-     if not nome:
-          st.warning("Por favor, digite o nome do cliente!")
-
-     elif not endereco:
-          st.warning("Por favor, digite o endereço!")
-
-     elif dt_nasc > hoje:
-          st.warning("Data de nascimento inválida!")
-
-if cadastrar:
     
     hoje = date.today()
     
@@ -42,28 +31,9 @@ if cadastrar:
          st.error("O endereço é obrigatório.")
     elif dt_nasc > hoje:
          st.error("Data de nascimento não pode ser no futuro.")
-
     else:
-        with open("clientes.csv", "a", encoding="utf8") as arquivo:
-              arquivo.write(f"{nome},{endereco},{dt_nasc},{tipo_cliente}\n")
-else:
-     
-     existe = False
-     try:
-          with open("clientes.csv","r", newline="") as arquivo:
-            reader = csv.reader(arquivo, delimiter=";")
-            for linha in reader:
-                    
-                if linha and (linha[0] == nome or linha[1 == endereco]):
-                    existe = True
-                    break
-     except FileNotFoundError:
-                    pass
-                    
-     if existe:
-         st.error("Cliente já cadastrado!")
-     else:
-         with open("clientes.csv", "a", newline="") as arquivo:
+        with open("clientes.csv", "a", NEWLINE="", encoding="utf8") as arquivo:
              writer = csv.writer(arquivo, delimiter=";")
              writer.writerow([nome, endereco, dt_nasc, tipo_cliente])
-         st.success("Cliente cadastrado com sucesso!")
+         
+        st.success("Cliente cadastrado com sucesso!")
