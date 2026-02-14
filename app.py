@@ -32,7 +32,7 @@ if cadastrar:
     elif dt_nasc > hoje:
          st.error("Data de nascimento não pode ser no futuro.")
     else:
-        with open("clientes.csv", "a", NEWLINE="", encoding="utf8") as arquivo:
+        with open("clientes.csv", "a", newline="", encoding="utf8") as arquivo:
              writer = csv.writer(arquivo, delimiter=";")
              writer.writerow([nome, endereco, dt_nasc, tipo_cliente])
          
